@@ -130,4 +130,9 @@ def weather_report(this_city):
 
 
 if __name__ == '__main__':
-    weather_report("芜湖")# 安装依赖 pip3 install requests html5lib bs4 schedule
+    city_list = ["芜湖", "西安", "深圳", "深圳"]
+    access_token = get_access_token()
+    for openId, city in zip(openIds, city_list):
+        weather = get_weather(city)
+        print(f"正在给用户 {openId} 发送{city}的天气信息...")
+        send_weather(access_token, weather, openId)
